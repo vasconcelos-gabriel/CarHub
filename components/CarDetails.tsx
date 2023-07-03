@@ -6,6 +6,25 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import { CarProps } from '@/types'
 
+interface Translations {
+  [key: string]: string
+}
+
+const translations: Translations = {
+  city_mpg: 'Consumo na cidade',
+  class: 'Classe',
+  combination_mpg: 'Consumo combinado',
+  cylinders: 'Cilindros',
+  displacement: 'Deslocamento',
+  drive: 'Tração',
+  fuel_type: 'Tipo de combustível',
+  highway_mpg: 'Consumo na estrada',
+  make: 'Fabricante',
+  model: 'Modelo',
+  transmission: 'Transmissão',
+  year: 'Ano'
+}
+
 interface CarDetailsProps {
   isOpen: boolean
   closeModal: () => void
@@ -39,7 +58,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative flex max-h-[90vh] w-full max-w-lg transform flex-col gap-5 overflow-y-auto rounded-2xl bg-white text-left shadow-xl transition-all">
+                <Dialog.Panel className="relative flex max-h-[90vh] w-full max-w-lg transform flex-col gap-5 overflow-y-auto rounded-2xl bg-white p-6 text-left shadow-xl transition-all">
                   <button
                     type="button"
                     onClick={closeModal}
@@ -73,6 +92,46 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                           className="object-contain"
                         />
                       </div>
+                      <div className="relative h-24 w-full flex-1 bg-primary-blue-100">
+                        <Image
+                          src="/hero.png"
+                          alt="Car Model"
+                          fill
+                          priority
+                          className="object-contain"
+                        />
+                      </div>
+                      <div className="relative h-24 w-full flex-1 bg-primary-blue-100">
+                        <Image
+                          src="/hero.png"
+                          alt="Car Model"
+                          fill
+                          priority
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col gap-2">
+                    <h2 className="text-xl font-semibold capitalize">
+                      {car.make} {car.model}
+                    </h2>
+
+                    <div className="mt-3 flex flex-wrap gap-4">
+                      {Object.entries(car).map(([key, value]) => (
+                        <div
+                          className="flex w-full justify-between gap-5 text-right"
+                          key={key}
+                        >
+                          <h4 className="capitalize text-grey">
+                            {translations[key] || key}
+                          </h4>
+                          <p className="font-semibold text-black-100">
+                            {' '}
+                            {value}{' '}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </Dialog.Panel>
