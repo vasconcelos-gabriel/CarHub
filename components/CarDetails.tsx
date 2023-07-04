@@ -126,7 +126,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                           <h4 className="capitalize text-grey">
                             {translations[key] || key}
                           </h4>
-                          <p className="font-semibold text-black-100">
+                          <p className="font-semibold capitalize text-black-100">
                             {' '}
                             {value}{' '}
                           </p>
